@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import torch.optim
+import torch.optim as optim
 
 
 in_features = 16
@@ -18,4 +18,9 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 for epoch in range(10):
-    
+    outputs = model(...)
+    loss = criterion(outputs, ...)
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
