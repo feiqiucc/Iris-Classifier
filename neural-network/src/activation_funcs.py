@@ -15,6 +15,10 @@ def tanh(X):
 def elu(X, alpha):
     return np.where(X > 0, X, alpha * (np.exp(X) - 1))
 
+def softmax(X):
+    expX = np.exp(X - np.max(X))
+    return expX / np.sum(expX, axis=0, keepdims=True)
+
 def activation(X: np.ndarray, func: str, alpha:float = 1.0):
     X = np.asarray(X)
     if func == 'relu':
@@ -27,6 +31,8 @@ def activation(X: np.ndarray, func: str, alpha:float = 1.0):
         return tanh(X)
     elif func == 'elu':
         return elu(X, alpha)
+    elif func == 'softmax':
+        return softmax(X)
     else:
         raise ValueError(f"This activation: {func} function is not supported.")
     
