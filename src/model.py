@@ -1,11 +1,16 @@
 import numpy as np
-import math
-import struct
-import h5py
 from data_process import *
 from activation_backward import *
 from activation_funcs import *
 from initialization import *
+
+def model(X, Y, learning_rate, lambd, parameters, layer_dims = [4, 10, 5, 3], activations = ['relu', 'relu', 'softmax'], print_cost = False):
+    y_hat, cost, temp = forward_propagation(X, Y, lambd, parameters, activations)
+    gradients = backward_propagation(temp, Y, parameters, activations, lambd)
+    parameters = SGD_optimization_parameters(parameters, gradients, learning_rate)
+    if print_cost:
+        print(f"cost is {cost:.6f}")
+    return parameters, cost
 
 def forward_propagation_acti(X, W, b, activation):
     linear_op = np.dot(W, X) + b
