@@ -1,6 +1,6 @@
 from data_process import *
-import math
 import numpy as np
+import math
 
 def init_data():
     # reshape to (1, m) so that easier to broadcast
@@ -33,3 +33,9 @@ def init_parameters(layer_dim, init_method):
             parameters['W' + str[l]], parameters['b' + str(l)] = xavier_init_uniform(layer_dim[l-1], layer_dim[l])
         else:
             raise ValueError(f"unsupported initialization method: {init_method}")
+
+def one_hot(label, classes):
+    Matrix = np.zeros((classes, label.shape[1]))
+    for cls in range(label.shape[1]):
+        Matrix[label[0, cls], cls] = 1
+    return Matrix
