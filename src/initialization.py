@@ -1,4 +1,4 @@
-from s.data_process import *
+from data_process import *
 import math
 import numpy as np
 
