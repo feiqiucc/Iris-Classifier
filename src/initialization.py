@@ -19,7 +19,7 @@ def he_init_normal(x_in, x_out):
 def xavier_init_uniform(x_in, x_out):
     #recommend tanh sigmoid
     limit = np.sqrt(6 / (x_in + x_out))
-    W = np.random.rand(x_out, x_in) * np.sqrt(1.0 / x_in)
+    W = np.random.uniform(low=-limit, high=limit, size=(x_out, x_in))
     b = np.zeros((x_out, 1))
     return W, b
 
