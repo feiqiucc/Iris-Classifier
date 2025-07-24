@@ -26,7 +26,7 @@ def load_data():
     data = pd.read_csv("dataset/iris.csv")
     features = data[['sepal.length'], ['sepal.width'], ['petal.length'], ['petal.width']].values
     labels = data['variety'].map({'Setosa': 0, 'Versicolor': 1, 'Virginica': 2}).values
-    train_features, temp_features, train_labels, temp_labels = my_split_np(features, labels, 0.3, 42)
+    train_features, temp_features, train_labels, temp_labels = my_split_np(features, labels, 0.2, 42)
     dev_features, test_features, dev_labels, test_labels = my_split_np(temp_features, temp_labels, 0.5, 18)
     return ((train_features.T, train_labels),
             (dev_features.T, dev_labels),
